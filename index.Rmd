@@ -5,8 +5,6 @@ date: "Created October 26, 2026"
 output:
   slidy_presentation:
     self_contained: true
-    css: style.css
-    duration: 5
 ---
 
 ```{r setup, include=FALSE}
@@ -93,6 +91,7 @@ Use the left and right arrow keys to move between slides. Creation date refers t
   setInterval(fitChart, 500);
 })();
 </script>
+
 
 
 
