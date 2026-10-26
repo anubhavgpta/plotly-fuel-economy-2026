@@ -13,3 +13,4 @@ code { color:#59dec5; }
 div.slidy_toc { background:#182a40; color:#edf3fa; }
 div.toolbar { background:#101e30; color:#b0bfd0; border-top:1px solid #304056; }
 @media(max-width:700px) { div.slide {padding:24px;} div.slide p {font-size:20px;} div.slide h1 {font-size:30px;} .big-number {font-size:40px;} div.slide.titlepage h1 {font-size:48px;} }
+.plotly.html-widget { width:100% !important; max-width:100%; }
