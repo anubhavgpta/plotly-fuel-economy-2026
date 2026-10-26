@@ -38,7 +38,7 @@ Hover over a point to identify a car. Click a legend entry to hide or show a cyl
 ```{r interactive-chart, fig.width=10, fig.height=4.5}
 p <- plot_ly(cars, x=~weight_lb, y=~mpg, color=~cylinders,
              colors=c("#59dec5", "#ffd166", "#ff8394"),
-             type="scatter", mode="markers", height=430,
+             type="scatter", mode="markers", height=360, width="100%",
              text=~paste0("<b>", model, "</b><br>Weight: ", weight_lb,
                           " lb<br>Fuel economy: ", mpg, " mpg<br>Cylinders: ", cyl),
              hoverinfo="text", marker=list(size=12, opacity=0.9,
@@ -81,3 +81,4 @@ Data: `datasets::mtcars`, extracted from the 1974 *Motor Trend* US magazine. See
 [View the R Markdown source](https://github.com/anubhavgpta/plotly-fuel-economy-2026/blob/main/index.Rmd)
 
 <div class="note">Use the left and right arrow keys to move between slides. Creation date refers to this document, not the historical data.</div>
+
