@@ -82,3 +82,21 @@ Data: `datasets::mtcars`, extracted from the 1974 *Motor Trend* US magazine. See
 
 <div class="note">Use the left and right arrow keys to move between slides. Creation date refers to this document, not the historical data.</div>
 
+
+<script>
+(function () {
+  function fitChart() {
+    document.querySelectorAll('.js-plotly-plot').forEach(function (el) {
+      if (!el.getClientRects().length || !window.Plotly) return;
+      var width = Math.max(260, Math.min(1100, window.innerWidth - (window.innerWidth < 700 ? 80 : 160)));
+      if (el.dataset.fittedWidth !== String(width)) {
+        el.dataset.fittedWidth = String(width);
+        Plotly.relayout(el, {width: width, height: 360, autosize: false});
+      }
+    });
+  }
+  window.addEventListener('resize', fitChart);
+  window.addEventListener('hashchange', fitChart);
+  setInterval(fitChart, 500);
+})();
+</script>
