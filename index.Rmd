@@ -1,0 +1,83 @@
+---
+title: "Less weight. More miles."
+author: "Anubhav Gupta"
+date: "Created October 26, 2026"
+output:
+  slidy_presentation:
+    self_contained: true
+    css: style.css
+    duration: 5
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo=FALSE, warning=FALSE, message=FALSE)
+library(plotly)
+cars <- mtcars
+cars$model <- rownames(cars)
+cars$cylinders <- factor(cars$cyl)
+cars$weight_lb <- cars$wt * 1000
+correlation <- cor(cars$weight_lb, cars$mpg)
+```
+
+## A small dataset with a clear pattern
+
+<div class="big-number">32 cars. One question.</div>
+
+How does a car's weight relate to how far it travels on a gallon of fuel?
+
+We explore **32 models from 1973–74**, using R's built-in `mtcars` dataset.
+
+Weight is measured in pounds. Fuel economy is measured in **miles per US gallon**.
+
+<div class="note">This is a historical comparison, not a guide to today's cars.</div>
+
+## Explore the relationship
+
+Hover over a point to identify a car. Click a legend entry to hide or show a cylinder group. Drag to zoom and double-click to reset.
+
+```{r interactive-chart, fig.width=10, fig.height=4.5}
+p <- plot_ly(cars, x=~weight_lb, y=~mpg, color=~cylinders,
+             colors=c("#59dec5", "#ffd166", "#ff8394"),
+             type="scatter", mode="markers", height=430,
+             text=~paste0("<b>", model, "</b><br>Weight: ", weight_lb,
+                          " lb<br>Fuel economy: ", mpg, " mpg<br>Cylinders: ", cyl),
+             hoverinfo="text", marker=list(size=12, opacity=0.9,
+               line=list(color="#ffffff", width=1)))
+p <- layout(p, paper_bgcolor="#101e30", plot_bgcolor="#101e30",
+            font=list(color="#edf3fa", family="Arial", size=16),
+            xaxis=list(title="Weight (lb)", gridcolor="#304056", zeroline=FALSE),
+            yaxis=list(title="Fuel economy (miles / US gallon)", gridcolor="#304056", zeroline=FALSE),
+            legend=list(title=list(text="Cylinders"), orientation="h", x=0, y=1.14),
+            margin=list(l=80, r=25, t=45, b=70))
+config(p, displaylogo=FALSE, responsive=TRUE, scrollZoom=FALSE)
+```
+
+## Heavier cars tend to use more fuel
+
+<div class="big-number">r = `r round(correlation, 2)`</div>
+
+The Pearson correlation between weight and fuel economy is strongly negative in this sample.
+
+The **Lotus Europa** weighs 1,513 lb and achieves 30.4 mpg. The **Lincoln Continental** weighs 5,424 lb and achieves 10.4 mpg.
+
+Cylinder groups also cluster in the chart. Weight and engine characteristics vary together, so this plot alone cannot isolate the effect of weight.
+
+## What this chart can tell us
+
+**A descriptive finding:** heavier cars generally have lower fuel economy among these 32 models.
+
+**A limitation:** this small historical dataset is observational. It does not establish causation or represent the modern vehicle market.
+
+**Try it:** return to the chart and hide the eight-cylinder cars. Does the downward pattern remain visible?
+
+## Built with R Markdown and Plotly
+
+Created **October 26, 2026** by Anubhav Gupta.
+
+This presentation was rendered from R Markdown. The interactive chart uses the **Plotly R package**.
+
+Data: `datasets::mtcars`, extracted from the 1974 *Motor Trend* US magazine. See the [R dataset documentation](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/mtcars.html).
+
+[View the R Markdown source](https://github.com/anubhavgpta/plotly-fuel-economy-2026/blob/main/index.Rmd)
+
+<div class="note">Use the left and right arrow keys to move between slides. Creation date refers to this document, not the historical data.</div>
