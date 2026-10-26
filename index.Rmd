@@ -85,7 +85,7 @@ Data: `datasets::mtcars`, extracted from the 1974 *Motor Trend* US magazine. See
 
 <script>
 (function () {
-  function fitChart() {
+  function fitChart() { if (window.w3c_slidy) window.w3c_slidy.mouse_click_enabled = false;
     document.querySelectorAll('.js-plotly-plot').forEach(function (el) {
       if (!el.dataset.eventsBound) { el.addEventListener("click", function(e) { e.stopPropagation(); }); el.addEventListener("dblclick", function(e) { e.stopPropagation(); }); el.dataset.eventsBound = "true"; }
       if (!el.getClientRects().length || !window.Plotly) return;
@@ -101,4 +101,5 @@ Data: `datasets::mtcars`, extracted from the 1974 *Motor Trend* US magazine. See
   setInterval(fitChart, 500);
 })();
 </script>
+
 
